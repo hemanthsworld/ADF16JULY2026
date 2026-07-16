@@ -1,0 +1,99 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "dfdemotest11"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"LS_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_METADATA_accountKey": {
+			"value": ""
+		},
+		"ls_binary_accountKey": {
+			"value": ""
+		},
+		"ls_binary1_accountKey": {
+			"value": ""
+		},
+		"ls_binary2_accountKey": {
+			"value": ""
+		},
+		"ls_csv_source_accountKey": {
+			"value": ""
+		},
+		"ls_csvmulti_connectionString": {
+			"value": ""
+		},
+		"ls_paraquet_accountKey": {
+			"value": ""
+		},
+		"ls_sink_csv_accountKey": {
+			"value": ""
+		},
+		"ls_txt_accountKey": {
+			"value": ""
+		},
+		"ls_txt_sink_accountKey": {
+			"value": ""
+		},
+		"lsrestparaq_accountKey": {
+			"value": ""
+		},
+		"lssink_csv_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"LS_CSV_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"LS_METADATA_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_binary_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_binary1_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_binary2_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_csv_source_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_paraquet_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_sink_csv_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_txt_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"ls_txt_sink_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"lsrestparaq_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"lssink_csv_properties_typeProperties_url": {
+			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
