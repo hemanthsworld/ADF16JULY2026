@@ -1,0 +1,15 @@
+{
+	"name": "dfdemotest11",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "57a7046b-99d3-40e2-8b68-00e78a849768",
+		"tenantId": "b7ee824a-1cdb-429d-a054-4e4701de2c65"
+	}
+}

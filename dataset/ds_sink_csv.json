@@ -1,0 +1,27 @@
+{
+	"name": "ds_sink_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sink_csv",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"csv": {
+				"type": "string"
+			},
+			"TargetFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "csv",
+				"fileSystem": "target"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

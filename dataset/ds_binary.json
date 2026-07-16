@@ -1,0 +1,27 @@
+{
+	"name": "ds_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_csv_source",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Source": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Source",
+					"type": "Expression"
+				},
+				"fileSystem": "testfile"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

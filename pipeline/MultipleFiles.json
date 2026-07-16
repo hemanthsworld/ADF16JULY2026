@@ -1,0 +1,143 @@
+{
+	"name": "MultipleFiles",
+	"properties": {
+		"activities": [
+			{
+				"name": "Metadata",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Binary1",
+						"type": "DatasetReference",
+						"parameters": {
+							"Sourcefile": "*"
+						}
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "BinaryReadSettings"
+					}
+				}
+			},
+			{
+				"name": "loopfile",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Metadata').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "case",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@last(split(item().name,'.'))",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "csv",
+										"activities": [
+											{
+												"name": "csvfile",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "BinarySource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": true
+														},
+														"formatSettings": {
+															"type": "BinaryReadSettings"
+														}
+													},
+													"sink": {
+														"type": "BinarySink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														}
+													},
+													"enableStaging": false
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_binary",
+														"type": "DatasetReference",
+														"parameters": {
+															"Source": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_sink_csv",
+														"type": "DatasetReference",
+														"parameters": {
+															"csv": {
+																"value": "@'CSV_Files'",
+																"type": "Expression"
+															},
+															"TargetFileName": {
+																"value": "@item().name",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-07-16T16:14:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

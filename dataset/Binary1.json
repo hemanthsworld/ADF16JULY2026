@@ -1,0 +1,23 @@
+{
+	"name": "Binary1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_binary",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Sourcefile": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "testfile"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
