@@ -1,0 +1,21 @@
+{
+	"name": "LS_LKUP_MAX_VALUE",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "DESKTOP-FDPHELG\\SQLEXPRESS",
+			"database": "readonlydb",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "Windows",
+			"userName": "DESKTOP-FDPHELG\\Admin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiOGI3MWUyMS1iNWQ1LTRhOTUtOTQ5NC00Y2Y2MzQ5MWQ1ODMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeself",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
