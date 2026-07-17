@@ -1,0 +1,37 @@
+{
+	"name": "SQLDBMIGRATION",
+	"properties": {
+		"activities": [
+			{
+				"name": "LKUP_SQLTABLE_WATERMARK_DW",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "SELECT TableSchema,TableName,WatermarkColumn,LastLoadValue\nFROM DBO.ADF_Watermark_Table",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_SQLSERVER_TBLLKUP",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"annotations": []
+	}
+}
