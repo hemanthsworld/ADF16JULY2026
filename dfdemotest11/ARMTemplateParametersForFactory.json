@@ -14,7 +14,13 @@
 		"LS_CSV_accountKey": {
 			"value": ""
 		},
+		"LS_LKUP_MAX_VALUE_password": {
+			"value": ""
+		},
 		"LS_METADATA_accountKey": {
+			"value": ""
+		},
+		"LS_SQLSERVER_TBLLKUP_password": {
 			"value": ""
 		},
 		"ls_binary_accountKey": {
@@ -50,14 +56,38 @@
 		"lssink_csv_accountKey": {
 			"value": ""
 		},
+		"LS_SqlTable_Parquet1_accountKey": {
+			"value": ""
+		},
+		"LS_ONPrem_SqlServer_DW_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://azlsdemotest11.dfs.core.windows.net/"
 		},
 		"LS_CSV_properties_typeProperties_url": {
 			"value": "https://azlsdemotest11.dfs.core.windows.net/"
 		},
+		"LS_LKUP_MAX_VALUE_properties_typeProperties_server": {
+			"value": "DESKTOP-FDPHELG\\SQLEXPRESS"
+		},
+		"LS_LKUP_MAX_VALUE_properties_typeProperties_database": {
+			"value": "readonlydb"
+		},
+		"LS_LKUP_MAX_VALUE_properties_typeProperties_userName": {
+			"value": "DESKTOP-FDPHELG\\Admin"
+		},
 		"LS_METADATA_properties_typeProperties_url": {
 			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_server": {
+			"value": "DESKTOP-FDPHELG\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_database": {
+			"value": "readonlydb"
+		},
+		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName": {
+			"value": "DESKTOP-FDPHELG\\Admin"
 		},
 		"ls_binary_properties_typeProperties_url": {
 			"value": "https://azlsdemotest11.dfs.core.windows.net/"
@@ -88,6 +118,18 @@
 		},
 		"lssink_csv_properties_typeProperties_url": {
 			"value": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"LS_SqlTable_Parquet1_properties_typeProperties_url": {
+			"value": "https://sqlserverdatamigration.dfs.core.windows.net/"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_server": {
+			"value": "DESKTOP-FDPHELG\\SQLEXPRESS"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_database": {
+			"value": "readonlydb"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_userName": {
+			"value": "DESKTOP-FDPHELG\\Admin"
 		}
 	}
 }

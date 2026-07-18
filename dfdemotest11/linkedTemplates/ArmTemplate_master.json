@@ -19,9 +19,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_CSV'"
 		},
+		"LS_LKUP_MAX_VALUE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_LKUP_MAX_VALUE'"
+		},
 		"LS_METADATA_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_METADATA'"
+		},
+		"LS_SQLSERVER_TBLLKUP_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQLSERVER_TBLLKUP'"
 		},
 		"ls_binary_accountKey": {
 			"type": "secureString",
@@ -67,6 +75,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'lssink_csv'"
 		},
+		"LS_SqlTable_Parquet1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SqlTable_Parquet1'"
+		},
+		"LS_ONPrem_SqlServer_DW_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_ONPrem_SqlServer_DW'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
@@ -75,9 +91,33 @@
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
 		},
+		"LS_LKUP_MAX_VALUE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\SQLEXPRESS"
+		},
+		"LS_LKUP_MAX_VALUE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "readonlydb"
+		},
+		"LS_LKUP_MAX_VALUE_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\Admin"
+		},
 		"LS_METADATA_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "readonlydb"
+		},
+		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\Admin"
 		},
 		"ls_binary_properties_typeProperties_url": {
 			"type": "string",
@@ -118,6 +158,22 @@
 		"lssink_csv_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"LS_SqlTable_Parquet1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sqlserverdatamigration.dfs.core.windows.net/"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\SQLEXPRESS"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "readonlydb"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\Admin"
 		},
 		"containerUri": {
 			"type": "string",
@@ -191,6 +247,9 @@
 					"lssink_csv_accountKey": {
 						"value": "[parameters('lssink_csv_accountKey')]"
 					},
+					"LS_SqlTable_Parquet1_accountKey": {
+						"value": "[parameters('LS_SqlTable_Parquet1_accountKey')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -229,10 +288,69 @@
 					},
 					"lssink_csv_properties_typeProperties_url": {
 						"value": "[parameters('lssink_csv_properties_typeProperties_url')]"
+					},
+					"LS_SqlTable_Parquet1_properties_typeProperties_url": {
+						"value": "[parameters('LS_SqlTable_Parquet1_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "dfdemotest11_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_LKUP_MAX_VALUE_password": {
+						"value": "[parameters('LS_LKUP_MAX_VALUE_password')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_password": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_password')]"
+					},
+					"LS_ONPrem_SqlServer_DW_password": {
+						"value": "[parameters('LS_ONPrem_SqlServer_DW_password')]"
+					},
+					"LS_LKUP_MAX_VALUE_properties_typeProperties_server": {
+						"value": "[parameters('LS_LKUP_MAX_VALUE_properties_typeProperties_server')]"
+					},
+					"LS_LKUP_MAX_VALUE_properties_typeProperties_database": {
+						"value": "[parameters('LS_LKUP_MAX_VALUE_properties_typeProperties_database')]"
+					},
+					"LS_LKUP_MAX_VALUE_properties_typeProperties_userName": {
+						"value": "[parameters('LS_LKUP_MAX_VALUE_properties_typeProperties_userName')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_server')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_database')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName')]"
+					},
+					"LS_ONPrem_SqlServer_DW_properties_typeProperties_server": {
+						"value": "[parameters('LS_ONPrem_SqlServer_DW_properties_typeProperties_server')]"
+					},
+					"LS_ONPrem_SqlServer_DW_properties_typeProperties_database": {
+						"value": "[parameters('LS_ONPrem_SqlServer_DW_properties_typeProperties_database')]"
+					},
+					"LS_ONPrem_SqlServer_DW_properties_typeProperties_userName": {
+						"value": "[parameters('LS_ONPrem_SqlServer_DW_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'dfdemotest11_ArmTemplate_0')]"
+			]
 		}
 	]
 }
