@@ -55,7 +55,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@or(equals(pipeline().parameters.LastLoadValue,null) ,greater(int(activity('LKUP_MAX_VALUE').output.firstrow.Maxvalue),int(pipeline().parameters.LastLoadValue)))\n",
+						"value": "@or(equals(pipeline().parameters.LastLoadValue,null) ,greater(int(activity('LKUP_MAX_VALUE').output.firstRow.Maxvalue),int(pipeline().parameters.LastLoadValue)))\n",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
