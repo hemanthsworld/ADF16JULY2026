@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_METADATA'"
 		},
+		"LS_SqlTable_Parquet1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SqlTable_Parquet1'"
+		},
 		"ls_binary_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_binary'"
@@ -67,10 +71,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'lssink_csv'"
 		},
-		"LS_SqlTable_Parquet1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SqlTable_Parquet1'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
@@ -82,6 +82,10 @@
 		"LS_METADATA_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
+		},
+		"LS_SqlTable_Parquet1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sqlserverdatamigration.dfs.core.windows.net/"
 		},
 		"ls_binary_properties_typeProperties_url": {
 			"type": "string",
@@ -122,10 +126,6 @@
 		"lssink_csv_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
-		},
-		"LS_SqlTable_Parquet1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://sqlserverdatamigration.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -191,6 +191,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_METADATA_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SqlTable_Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SqlTable_Parquet1_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SqlTable_Parquet1_accountKey')]"
 					}
 				}
 			},
@@ -390,23 +407,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LS_SqlTable_Parquet1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SqlTable_Parquet1_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SqlTable_Parquet1_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Binary1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -431,6 +431,43 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_binary')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SqlTable_Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SqlTable_Parquet1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Table_Name": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat(dataset().Table_Name,'-',formatDateTime(utcNow(),'yyyy/MM/ddHHmmmss'),'.parquet')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat(dataset().Table_Name,'/',formatDateTime(utcNow(),'yyyy/MM/dd'))",
+							"type": "Expression"
+						},
+						"fileSystem": "retaildw"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_SqlTable_Parquet1')]"
 			]
 		},
 		{
@@ -462,37 +499,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_csv_source')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_sink_csv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_sink_csv",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"csv": {
-						"type": "string"
-					},
-					"TargetFileName": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "csv",
-						"fileSystem": "target"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_sink_csv')]"
 			]
 		}
 	]

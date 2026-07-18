@@ -27,9 +27,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_METADATA'"
 		},
+		"LS_ONPrem_SqlServer_DW_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_ONPrem_SqlServer_DW'"
+		},
 		"LS_SQLSERVER_TBLLKUP_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SQLSERVER_TBLLKUP'"
+		},
+		"LS_SqlTable_Parquet1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SqlTable_Parquet1'"
 		},
 		"ls_binary_accountKey": {
 			"type": "secureString",
@@ -75,14 +83,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'lssink_csv'"
 		},
-		"LS_SqlTable_Parquet1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SqlTable_Parquet1'"
-		},
-		"LS_ONPrem_SqlServer_DW_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LS_ONPrem_SqlServer_DW'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
@@ -107,6 +107,18 @@
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
 		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\SQLEXPRESS"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "readonlydb"
+		},
+		"LS_ONPrem_SqlServer_DW_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-FDPHELG\\Admin"
+		},
 		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "DESKTOP-FDPHELG\\SQLEXPRESS"
@@ -118,6 +130,10 @@
 		"LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "DESKTOP-FDPHELG\\Admin"
+		},
+		"LS_SqlTable_Parquet1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sqlserverdatamigration.dfs.core.windows.net/"
 		},
 		"ls_binary_properties_typeProperties_url": {
 			"type": "string",
@@ -159,22 +175,6 @@
 			"type": "string",
 			"defaultValue": "https://azlsdemotest11.dfs.core.windows.net/"
 		},
-		"LS_SqlTable_Parquet1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://sqlserverdatamigration.dfs.core.windows.net/"
-		},
-		"LS_ONPrem_SqlServer_DW_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "DESKTOP-FDPHELG\\SQLEXPRESS"
-		},
-		"LS_ONPrem_SqlServer_DW_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "readonlydb"
-		},
-		"LS_ONPrem_SqlServer_DW_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "DESKTOP-FDPHELG\\Admin"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -214,6 +214,9 @@
 					"LS_METADATA_accountKey": {
 						"value": "[parameters('LS_METADATA_accountKey')]"
 					},
+					"LS_SqlTable_Parquet1_accountKey": {
+						"value": "[parameters('LS_SqlTable_Parquet1_accountKey')]"
+					},
 					"ls_binary_accountKey": {
 						"value": "[parameters('ls_binary_accountKey')]"
 					},
@@ -247,9 +250,6 @@
 					"lssink_csv_accountKey": {
 						"value": "[parameters('lssink_csv_accountKey')]"
 					},
-					"LS_SqlTable_Parquet1_accountKey": {
-						"value": "[parameters('LS_SqlTable_Parquet1_accountKey')]"
-					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -258,6 +258,9 @@
 					},
 					"LS_METADATA_properties_typeProperties_url": {
 						"value": "[parameters('LS_METADATA_properties_typeProperties_url')]"
+					},
+					"LS_SqlTable_Parquet1_properties_typeProperties_url": {
+						"value": "[parameters('LS_SqlTable_Parquet1_properties_typeProperties_url')]"
 					},
 					"ls_binary_properties_typeProperties_url": {
 						"value": "[parameters('ls_binary_properties_typeProperties_url')]"
@@ -288,9 +291,6 @@
 					},
 					"lssink_csv_properties_typeProperties_url": {
 						"value": "[parameters('lssink_csv_properties_typeProperties_url')]"
-					},
-					"LS_SqlTable_Parquet1_properties_typeProperties_url": {
-						"value": "[parameters('LS_SqlTable_Parquet1_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -313,11 +313,11 @@
 					"LS_LKUP_MAX_VALUE_password": {
 						"value": "[parameters('LS_LKUP_MAX_VALUE_password')]"
 					},
-					"LS_SQLSERVER_TBLLKUP_password": {
-						"value": "[parameters('LS_SQLSERVER_TBLLKUP_password')]"
-					},
 					"LS_ONPrem_SqlServer_DW_password": {
 						"value": "[parameters('LS_ONPrem_SqlServer_DW_password')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_password": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_password')]"
 					},
 					"LS_LKUP_MAX_VALUE_properties_typeProperties_server": {
 						"value": "[parameters('LS_LKUP_MAX_VALUE_properties_typeProperties_server')]"
@@ -328,15 +328,6 @@
 					"LS_LKUP_MAX_VALUE_properties_typeProperties_userName": {
 						"value": "[parameters('LS_LKUP_MAX_VALUE_properties_typeProperties_userName')]"
 					},
-					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_server": {
-						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_server')]"
-					},
-					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_database": {
-						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_database')]"
-					},
-					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName": {
-						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName')]"
-					},
 					"LS_ONPrem_SqlServer_DW_properties_typeProperties_server": {
 						"value": "[parameters('LS_ONPrem_SqlServer_DW_properties_typeProperties_server')]"
 					},
@@ -345,6 +336,15 @@
 					},
 					"LS_ONPrem_SqlServer_DW_properties_typeProperties_userName": {
 						"value": "[parameters('LS_ONPrem_SqlServer_DW_properties_typeProperties_userName')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_server')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_database')]"
+					},
+					"LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQLSERVER_TBLLKUP_properties_typeProperties_userName')]"
 					}
 				}
 			},
