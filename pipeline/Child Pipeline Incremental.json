@@ -126,7 +126,7 @@
 							]
 						},
 						{
-							"name": "Execute Pipeline1",
+							"name": "Execute_Update",
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
@@ -141,6 +141,10 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Child Pipeline StoredProcedure",
+									"type": "PipelineReference"
+								},
 								"waitOnCompletion": true
 							}
 						}
